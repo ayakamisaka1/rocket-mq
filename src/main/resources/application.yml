@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: rocket-mq
+
+server:
+  port: 9898
+
+
+  datasource:
+    url: jdbc:mysql://8.137.39.241:4508/camunda_boot?useUnicode=true&characterEncoding=utf-8&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: XSJroot123456
