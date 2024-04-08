@@ -20,7 +20,7 @@ mkdir -p  /docker/rocketmq/data/broker/logs   /docker/rocketmq/data/broker/store
 
 
 vi /docker/rocketmq/conf/broker.conf
-# 所属集群名称，如果节点较多可以配置多个
+#所属集群名称，如果节点较多可以配置多个
 brokerClusterName = DefaultCluster
 #broker名称，master和slave使用相同的名称，表明他们的主从关系
 brokerName = broker-a
