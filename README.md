@@ -39,7 +39,7 @@ brokerIP1 = 8.137.39.241
 #磁盘使用达到95%之后,生产者再写入消息会报错 CODE: 14 DESC: service not available now, maybe disk full
 diskMaxUsedSpaceRatio=95
 #nameServer地址，分号分割
-namesrvAddr= 8.137.39.241:9876
+namesrvAddr= 127.0.0.1:9876
 #在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
 defaultTopicQueueNums= 8
 #是否允许 Broker 自动创建Topic，建议线下开启，线上关闭
@@ -58,12 +58,12 @@ docker run -d  \
 -p 10909:10909 \
 -v  /docker/rocketmq/data/broker/logs:/root/logs \
 -v  /docker/rocketmq/data/broker/store:/root/store \
--v /docker/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf \
--e "NAMESRV_ADDR=8.137.39.241:9876" \
+-v /docker/rocketmq/conf/broker.conf:/opt/rocketmq-latest/conf/broker.conf \
+-e "NAMESRV_ADDR=namesrv:9876" \
 -e "JAVA_OPT_EXT=-Xms258m -Xmx258m" \
 -e "MAX_POSSIBLE_HEAP=200000000" \
 -d apache/rocketmq:latest \
-sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf 
+sh mqbroker -c /opt/rocketmq-latest/conf/broker.conf 
 
 
 docker pull pangliang/rocketmq-console-ng
