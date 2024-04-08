@@ -51,7 +51,7 @@ docker run -d  \
 -v  /docker/rocketmq/data/broker/logs:/root/logs \
 -v  /docker/rocketmq/data/broker/store:/root/store \
 -v /docker/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf \
--e "NAMESRV_ADDR=namesrv:9876" \
+-e "NAMESRV_ADDR=8.137.39.241:9876" \
 -e "JAVA_OPT_EXT=-Xms258m -Xmx258m" \
 -e "MAX_POSSIBLE_HEAP=200000000" \
 -d apache/rocketmq:latest \
