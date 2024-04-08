@@ -77,3 +77,10 @@ docker run -d \
 -p 9999:8080 \
 pangliang/rocketmq-console-ng
 
+#开放指定端口
+firewall-cmd --permanent --zone=public --add-port=9876/tcp
+firewall-cmd --permanent --zone=public --add-port=10911/tcp
+#立即生效
+firewall-cmd --reload
+
+
