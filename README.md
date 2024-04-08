@@ -34,10 +34,18 @@ fileReservedTime = 48
 brokerRole = ASYNC_MASTER
 #刷盘策略，取值为：ASYNC_FLUSH，SYNC_FLUSH表示同步刷盘和异步刷盘；SYNC_FLUSH消息写入磁盘后才返回成功状态，ASYNC_FLUSH不需要；
 flushDiskType = ASYNC_FLUSH
-# 设置broker节点所在服务器的ip地址
+#设置broker节点所在服务器的ip地址
 brokerIP1 = 8.137.39.241
-# 磁盘使用达到95%之后,生产者再写入消息会报错 CODE: 14 DESC: service not available now, maybe disk full
+#磁盘使用达到95%之后,生产者再写入消息会报错 CODE: 14 DESC: service not available now, maybe disk full
 diskMaxUsedSpaceRatio=95
+#nameServer地址，分号分割
+namesrvAddr= 8.137.39.241:9876
+#在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
+defaultTopicQueueNums= 8
+#是否允许 Broker 自动创建Topic，建议线下开启，线上关闭
+autoCreateTopicEnable= true
+#是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭
+autoCreateSubscriptionGroup= true
 
 
 
