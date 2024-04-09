@@ -21,9 +21,12 @@ spring:
     name: rocket-mq
 
 rocketmq:
-  name-server: 8.137.39.241:9876  # RocketMQ 的 NameServer 地址
+  name-server: 8.137.39.241:9876 # RocketMQ地址
   producer:
-    group: producer_test  # 生产者组名
-  consumer:
-    group: consumer_test  # 消费者组名
-    topic: test       # 消费者订阅的主题
+    send-message-timeout: 30000
+    group: my-group
+#  consumer:
+#    consumerGroup: string_consumer
+#    stringTopic: string-topic
+#    userTopic: user-topic
+#    tag: test
