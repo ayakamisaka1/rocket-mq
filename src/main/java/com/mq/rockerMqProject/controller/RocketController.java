@@ -33,6 +33,6 @@ public class RocketController {
 
     @RequestMapping(value = "/tagA", method = RequestMethod.GET)
     public void tagA() {
-        rocketMQTemplate.convertAndSend("test:tag", "hello world tagA");
+        rocketMQTemplate.asyncSend("xsj:tag", "hello world tagA",null);
     }
 }
