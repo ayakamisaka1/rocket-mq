@@ -9,6 +9,7 @@ mkdir -p  /docker/rocketmq/data/namesrv/logs   /docker/rocketmq/data/namesrv/sto
 docker run -d \
 --restart=always \
 --name rmqnamesrv \
+--network=rocketmq-net \
 -p 9876:9876 \
 -v /docker/rocketmq/data/namesrv/logs:/root/logs \
 -v /docker/rocketmq/data/namesrv/store:/root/store \
@@ -35,7 +36,7 @@ brokerRole = ASYNC_MASTER
 #刷盘策略，取值为：ASYNC_FLUSH，SYNC_FLUSH表示同步刷盘和异步刷盘；SYNC_FLUSH消息写入磁盘后才返回成功状态，ASYNC_FLUSH不需要；
 flushDiskType = ASYNC_FLUSH
 #设置broker节点所在服务器的ip地址
-brokerIP1 = 8.137.39.241
+brokerIP1 = 填容器地址
 #磁盘使用达到95%之后,生产者再写入消息会报错 CODE: 14 DESC: service not available now, maybe disk full
 diskMaxUsedSpaceRatio=95
 #在发送消息时，自动创建服务器不存在的topic，默认创建的队列数
@@ -52,13 +53,14 @@ docker run -d  \
 --restart=always \
 --name rmqbroker \
 --link rmqnamesrv:namesrv \
+--network=rocketmq-net \
 -p 10911:10911 \
 -p 10909:10909 \
 -v  /docker/rocketmq/data/broker/logs:/root/logs \
 -v  /docker/rocketmq/data/broker/store:/root/store \
 -v /docker/rocketmq/conf/broker.conf:/opt/rocketmq-latest/conf/broker.conf \
--e "NAMESRV_ADDR=8.137.39.241:9876" \
--e "JAVA_OPT_EXT=-Xms258m -Xmx258m" \
+-e "NAMESRV_ADDR=namesrv:9876" \
+-e "JAVA_OPT_EXT=-Xms256m -Xmx256m" \
 -e "MAX_POSSIBLE_HEAP=200000000" \
 -d apache/rocketmq:latest \
 sh mqbroker -c /opt/rocketmq-latest/conf/broker.conf 
@@ -70,6 +72,7 @@ docker pull pangliang/rocketmq-console-ng
 docker run -d \
 --restart=always \
 --name rmqadmin \
+--network=rocketmq-net \
 -e "JAVA_OPTS=-Drocketmq.namesrv.addr=8.137.39.241:9876 \
 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
 -p 9999:8080 \
