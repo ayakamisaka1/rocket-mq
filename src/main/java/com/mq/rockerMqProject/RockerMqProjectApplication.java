@@ -12,7 +12,7 @@ public class RockerMqProjectApplication {
          * RocketMQLog:WARN No appenders could be found for logger (io.netty.util.internal.InternalThreadLocalMap).
          * RocketMQLog:WARN Please initialize the logger system properly.
          */
-        //System.setProperty("rocketmq.client.logUseSlf4j", "true");
+        System.setProperty("rocketmq.client.logUseSlf4j", "true");
         SpringApplication.run(RockerMqProjectApplication.class, args);
     }
 

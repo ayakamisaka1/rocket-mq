@@ -21,23 +21,13 @@ spring:
     name: rocket-mq
 
 rocketmq:
-  enhance:
-  # 启动隔离，用于激活配置类EnvironmentIsolationConfig
-  # 启动后会自动在topic上拼接激活的配置文件，达到自动隔离的效果
-  enabledIsolation: true
-  # 隔离环境名称，拼接到topic后，topic_dev，默认空字符串
-  environment: dev
   name-server: 8.137.39.241:9876 # RocketMQ地址
   producer:
     send-message-timeout: 30000
     group: my-group
-#  consumer:
-#    consumerGroup: string_consumer
-#    stringTopic: string-topic
-#    userTopic: user-topic
-#    tag: test
-#logging:
-#  level:
-#    RocketmqClient: ERROR
-#    io:
-#      netty: ERROR
+
+logging:
+  level:
+    RocketmqClient: ERROR
+    io:
+      netty: ERROR
