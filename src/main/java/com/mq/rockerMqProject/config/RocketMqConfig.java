@@ -2,7 +2,11 @@ package com.mq.rockerMqProject.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQMessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -29,12 +33,12 @@ public class RocketMqConfig {
 
     @Bean
     @Primary
-    public RocketMQMessageConverter enhanceRocketMQMessageConverter(){
+    public RocketMQMessageConverter enhanceRocketMQMessageConverter() {
         RocketMQMessageConverter converter = new RocketMQMessageConverter();
         CompositeMessageConverter compositeMessageConverter = (CompositeMessageConverter) converter.getMessageConverter();
         List<MessageConverter> messageConverterList = compositeMessageConverter.getConverters();
         for (MessageConverter messageConverter : messageConverterList) {
-            if(messageConverter instanceof MappingJackson2MessageConverter){
+            if (messageConverter instanceof MappingJackson2MessageConverter) {
                 MappingJackson2MessageConverter jackson2MessageConverter = (MappingJackson2MessageConverter) messageConverter;
                 ObjectMapper objectMapper = jackson2MessageConverter.getObjectMapper();
                 objectMapper.registerModules(new JavaTimeModule());
